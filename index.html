@@ -1,0 +1,164 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <!-- Required meta tags -->
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+  <!-- Bootstrap CSS -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+    integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
+  <title>Online MQTT Web Client</title>
+  
+  <style>
+    body{
+        background-image: url("bg.jpg");
+        background-attachment: fixed;
+        background-size: cover;
+
+    }
+  </style>
+</head>
+
+<body>
+  <br>
+  <h2 class="text-center text-white">MQTT over Web Socket</h2>
+  <div class="card-deck m-4">
+    <div class="card">
+      <div class="card-header bg-primary text-white">
+        <h5>Broker</h5>
+      </div>
+      <div class="card-body">
+        <form>
+          <div class="form-group">
+            <label>Address :</label>
+            <input id="broker" value="wss://test.mosquitto.org:8081/mqtt" class="form-control">
+          </div>
+          <div class="form-group">
+            <a id="connect" onclick="connectFunc()" class="btn btn-info text-white">Connect</a>
+            <a id="disconnect" onclick="disconnectFunc()" class="btn btn-warning text-white">Disconnect</a>
+          </div>
+          <div class="form-group">
+            <label>Status :</label>
+            <input id="status" value="Press connect..." class="form-control">
+          </div>
+        </form>
+      </div>
+    </div>
+    <div class="card">
+      <div class="card-header bg-primary text-white">
+        <h5>Publish</h5>
+      </div>
+      <div class="card-body">
+        <form>
+          <div class="form-group">
+            <label>Topic :</label>
+            <input id="pub-topic" value="cloud" class="form-control">
+          </div>
+          <div class="form-group">
+            <label>Payload: </label>
+            <input id="pub-payload" type="text" class="form-control" value="strife">
+          </div>
+          <div class="form-group">
+            <a id="publish" onclick="publishFunc()" class="btn btn-success  text-white">Publish</a>
+          </div>
+        </form>
+
+      </div>
+    </div>
+    <div class="card">
+      <div class="card-header bg-primary text-white">
+        <h5>Subscribe</h5>
+      </div>
+      <div class="card-body">
+        <form>
+          <div class="form-group">
+            <label>Topic :</label>
+            <input id="sub-topic" value="cloud" class="form-control">
+          </div>
+          <div class="form-group">
+            <a id="subscribe" onclick="subscribeFunc()" class="btn btn-danger  text-white">Subscribe</a>
+            <a id="unsubscribe" onclick="unsubsribeFunc()" class="btn btn-info text-white">Unsubscribe</a>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <div class="card-deck m-4">
+    <div class="card">
+      <div class="card-header bg-secondary text-center text-white">
+        <h5>Incoming Message</h5>
+      </div>
+      <div class="card-body">
+        <table class=" table table-sm">
+          <thead class="thead-light">
+            <tr>
+              <th scope="col">Topic</th>
+              <th scope="col">Payload</th>
+              <th scope="col">Time Stamp</th>
+            </tr>
+          </thead>
+          <tbody id="incomingMessage">
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-header bg-secondary text-center text-white">
+        <h5>Publish Messages</h5>
+      </div>
+      <div class="card-body">
+        <table class=" table table-sm">
+          <thead class="thead-light">
+            <tr>
+              <th scope="col">Topic</th>
+              <th scope="col">Payload</th>
+              <th scope="col">Time Stamp</th>
+            </tr>
+          </thead>
+          <tbody id="displayPubMessage">
+
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-header bg-secondary text-center text-white">
+        <h5>Subscribe Messages</h5>
+      </div>
+      <div class="card-body">
+        <table class="table table-sm">
+          <thead class="thead-light">
+            <tr>
+              <th scope="col">Topic</th>
+              <th scope="col">Time Stamp</th>
+            </tr>
+          </thead>
+          <tbody id="displaySubMessage">
+
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+
+  <script src="browserMqtt.js"></script>
+  <script src="controller.js"></script>
+  <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+  <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+    integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+    crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+    integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+    crossorigin="anonymous"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+    integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+    crossorigin="anonymous"></script>
+</body>
+
+</html>
