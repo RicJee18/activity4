@@ -45,6 +45,9 @@ function subscribeFunc(){
     }
 }
 
-
-
+function disconFunc()
+{
+    console.log("hello")
+    client.disconnect();
+}
   
