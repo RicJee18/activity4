@@ -1,5 +1,6 @@
 
 var date = new Date()
+var client;
 
 function connectFunc(){
     
