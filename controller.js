@@ -3,8 +3,6 @@ var client;
 
 function connectFunc(){
     
-    var date = new Date();
-    
     document.getElementById('status').value = "";
     document.getElementById('status').value += "Connecting ....";
     
@@ -16,6 +14,7 @@ function connectFunc(){
     })
     
     client.on("message", function (topic, payload) {
+      var date = new Date();
       if (topic == document.getElementById('sub-topic').value){
         document.getElementById('incomingMessage').innerHTML += `<tr><td>${topic}</td><td>${payload}</td><td>${date.toDateString()+" "+ date.toLocaleTimeString()}</td></tr>`
       }
