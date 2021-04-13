@@ -1,5 +1,4 @@
 
-var date = new Date()
 var client;
 
 function connectFunc(){
@@ -14,6 +13,7 @@ function connectFunc(){
         document.getElementById('status').value += "Connected!";
     })
     
+    var date = new Date();
     client.on("message", function (topic, payload) {
       if (topic == document.getElementById('sub-topic').value){
         document.getElementById('incomingMessage').innerHTML += `<tr><td>${topic}</td><td>${payload}</td><td>${date.toDateString()+" "+ date.toLocaleTimeString()}</td></tr>`
@@ -22,6 +22,7 @@ function connectFunc(){
 }
 
 function publishFunc() {
+    var date = new Date();
     if (document.getElementById('pub-topic').value != "" && document.getElementById('pub-payload').value != "") {
         client.publish(document.getElementById('pub-topic').value, document.getElementById('pub-payload').value)
         document.getElementById('displayPubMessage').innerHTML += `<tr><td>${document.getElementById('pub-topic').value}</td><td>${document.getElementById('pub-payload').value}</td><td>${date.toDateString()+" "+ date.toLocaleTimeString()} </td></tr>`
@@ -32,7 +33,7 @@ function publishFunc() {
 }
 
 function subscribeFunc(){
-    
+    var date = new Date();
     if (document.getElementById('sub-topic').value != "") {
         client.subscribe(document.getElementById('sub-topic').value, function (err) {
             if (err) {
